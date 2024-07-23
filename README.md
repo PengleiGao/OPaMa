@@ -15,6 +15,6 @@ among the multi-direction NFoV images.
 
 • Extensive experiments achieve state-of-the-art performance on two widely rec-
 ognized 360-degree image datasets in indoor and outdoor settings indicating the
-superiority of our method.
+the superiority of our method.
 
-![sds](/assets/prebanner.png)
+![We aim to generate smooth and reasonable 360-degree images from NFoV images by utilizing a state space model Mamba with the ability to process long sequences and model spatial continuity.](/assets/prebanner.png)
