@@ -20,3 +20,7 @@ the superiority of our method.
 ![We aim to generate smooth and reasonable 360-degree images from NFoV images by utilizing a state space model Mamba with the ability to process long sequences and model spatial continuity.](/assets/prebanner.png)
 
 We aim to generate smooth and reasonable 360-degree images from NFoV images by utilizing a state space model Mamba with the ability to process long sequences and model spatial continuity.
+
+## Requirements
+you can install the required environment by using `pip install -r requirement.txt`
+python>=3.8, as well as pytorch>=2.0, torchvision>=0.8, diffusers>=0.21.0 and accelerate>=0.19.0.
