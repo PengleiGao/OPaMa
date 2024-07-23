@@ -52,10 +52,15 @@ You can inference the trained model with:
 If you found our project is helpful, please cite us:
 
 `@article{gao2024opa,
+
   title={OPa-Ma: Text Guided Mamba for 360-degree Image Out-painting},
+  
   author={Gao, Penglei and Yao, Kai and Ye, Tiandi and Wang, Steven and Yao, Yuan and Wang, Xiaofeng},
+  
   journal={arXiv preprint arXiv:2407.10923},
+  
   year={2024}
+  
 }`
 
 ## Acknowledgement
