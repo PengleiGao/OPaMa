@@ -1,0 +1,112 @@
+SHARE:
+  image_size: 512
+model:
+    target: models.InpaintMamba
+    params:
+      clip_model_id: 'stabilityai/stable-diffusion-2-1-unclip'
+      sd_model_id: 'stabilityai/stable-diffusion-2-inpainting'
+      train_kv: False
+      transformer_config:
+        depth: 8
+        heads: 8
+      opt_config:
+        lr: 1e-4
+        betas:
+          - 0.9
+          - 0.999
+        
+              
+data:
+  target: dataset.DataModuleFromConfig
+  params:
+    batch_size: 2
+    num_workers: 4
+    train:
+      target: dataset.PosImageDataset
+      params:
+        folders: 
+          - /home/gaop/Image/AOG-NET-360/Dataset/indoor_train_new
+        image_width: 4096
+        image_height: 2048
+        cube_size: ${SHARE.image_size}
+        caption_info: "./image_caption/indoor_train.pkl" # path to caption
+        mask_info: "./image_caption/indoor_mask.pkl"
+        augment_caption_info: "./image_caption/indoor_train_aug.pkl"
+        num_augment_caption: 5
+        
+    validation:
+        target: dataset.PosImageDataset
+        params:
+          folders:
+            - /home/gaop/Image/AOG-NET-360/Dataset/indoor_test_new
+          image_width: 4096
+          image_height: 2048
+          dataset_size: 10
+          cube_size: ${SHARE.image_size}
+          caption_info: "./image_caption/indoor_test.pkl" # path to caption
+          mask_info: "./image_caption/indoor_mask.pkl"
+          augment_caption_info: "./image_caption/indoor_test_aug.pkl"
+          num_augment_caption: 1
+        
+    test:
+        target: dataset.PosImageDataset
+        params:
+          folders: 
+            - /home/gaop/Image/AOG-NET-360/Dataset/indoor_test_new
+          image_width: 4096
+          image_height: 2048
+          cube_size: ${SHARE.image_size}
+          caption_info: "./image_caption/indoor_test.pkl" # path to caption
+          mask_info: "./image_caption/indoor_mask.pkl"
+          augment_caption_info: "./image_caption/indoor_test_aug.pkl"
+          num_augment_caption: 1
+
+
+trainer: 
+  accelerator: gpu
+  devices: [4,5,6,7]
+  accumulate_grad_batches: 1
+  default_root_dir: "./Outpaint_log_mamba" #here is where you find your ckpt
+  max_epochs: 240
+  precision: 32
+  amp_backend: 'native'
+  #detect_anomaly: True
+  gradient_clip_val: 0.5
+
+callbacks:
+  callback_1:
+    target: pytorch_lightning.callbacks.ModelCheckpoint
+    params:
+      monitor: val/loss
+      save_top_k: 1
+      mode: min
+      filename: latest_checkpoint
+
+  callback_2:
+   target: pytorch_lightning.callbacks.ModelCheckpoint
+   params:
+      every_n_epochs: 10
+      save_on_train_epoch_end: True
+      save_top_k: -1 
+      filename: '{epoch}-{train/loss:.2f}'
+
+  callback_3:
+    target: pytorch_lightning.callbacks.LearningRateMonitor
+    params:
+      logging_interval: step
+    
+  callback_4:
+   target: misc.callbacks.ImageLogger
+   params:
+      batch_frequency: 3000
+      max_images: -1
+      clamp: True
+      selected_keys:
+        - input
+        - output 
+        - masked_input 
+        - cond_equi
+        - attn
+
+
+
