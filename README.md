@@ -51,12 +51,14 @@ You can inference the trained model with:
 ## Citation
 If you found our project is helpful, please cite us:
 
-`@article{gao2024opa,
+```
+@article{gao2024opa,
   title={OPa-Ma: Text Guided Mamba for 360-degree Image Out-painting},
   author={Gao, Penglei and Yao, Kai and Ye, Tiandi and Wang, Steven and Yao, Yuan and Wang, Xiaofeng},
   journal={arXiv preprint arXiv:2407.10923},
   year={2024}
-}`
+}
+```
 
 ## Acknowledgement
 This project is built based on [AOG-NET-360](https://github.com/zhuqiangLu/AOG-NET-360), [Diffusers](https://github.com/huggingface/diffusers), and [PyEquilib](https://github.com/haruishi43/equilib)
