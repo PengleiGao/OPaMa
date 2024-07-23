@@ -24,3 +24,38 @@ We aim to generate smooth and reasonable 360-degree images from NFoV images by u
 ## Requirements
 you can install the required environment by using `pip install -r requirement.txt`
 python>=3.8, as well as pytorch>=2.0, torchvision>=0.8, diffusers>=0.21.0 and accelerate>=0.19.0.
+
+## Dataset
+We use the outdoor and indoor datasets in our paper. The datasets can be inquired in [Laval Indoor HDR](http://hdrdb.com/indoor/) and [Laval Outdoor HDR](http://hdrdb.com/outdoor/).
+
+## Experiments
+### Preprocessing - exr
+The images in these two datasets are in .exr format, to convert .exr images to .png, you can run
+
+`python misc/captioning --image_dir [path_to_png_imgaes] --out_dir [path_to_text_prompt] --name [dataset_name]`
+
+The augmented text prompt can be extracted via:
+
+`python misc/captioning --image_dir [path_to_png_imgaes] --out_dir [path_to_text_prompt] --name [dataset_name] --stride 30 --augment `
+
+### Training
+You can run the following command to train your own model:
+
+`python cmd_train.py`
+
+### Inference
+You can inference the trained model with:
+
+`python cmd_inference.py`
+
+## Citation
+If you found our project is helpful, please cite us:
+@article{gao2024opa,
+  title={OPa-Ma: Text Guided Mamba for 360-degree Image Out-painting},
+  author={Gao, Penglei and Yao, Kai and Ye, Tiandi and Wang, Steven and Yao, Yuan and Wang, Xiaofeng},
+  journal={arXiv preprint arXiv:2407.10923},
+  year={2024}
+}
+
+## Acknowledgement
+This project is built based on [[AOG-NET-360](https://github.com/zhuqiangLu/AOG-NET-360), [Diffusers](https://github.com/huggingface/diffusers), and [PyEquilib](https://github.com/haruishi43/equilib)
