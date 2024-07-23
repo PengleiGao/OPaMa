@@ -25,7 +25,7 @@ data:
       target: dataset.PosImageDataset
       params:
         folders: 
-          - /home/gaop/Image/AOG-NET-360/Dataset/indoor_train_new
+          - path/to/the/train_data
         image_width: 4096
         image_height: 2048
         cube_size: ${SHARE.image_size}
@@ -38,7 +38,7 @@ data:
         target: dataset.PosImageDataset
         params:
           folders:
-            - /home/gaop/Image/AOG-NET-360/Dataset/indoor_test_new
+            - path/to/the/test_data
           image_width: 4096
           image_height: 2048
           dataset_size: 10
@@ -52,7 +52,7 @@ data:
         target: dataset.PosImageDataset
         params:
           folders: 
-            - /home/gaop/Image/AOG-NET-360/Dataset/indoor_test_new
+            - path/to/the/test_data
           image_width: 4096
           image_height: 2048
           cube_size: ${SHARE.image_size}
