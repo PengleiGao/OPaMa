@@ -18,3 +18,5 @@ ognized 360-degree image datasets in indoor and outdoor settings indicating the
 the superiority of our method.
 
 ![We aim to generate smooth and reasonable 360-degree images from NFoV images by utilizing a state space model Mamba with the ability to process long sequences and model spatial continuity.](/assets/prebanner.png)
+
+We aim to generate smooth and reasonable 360-degree images from NFoV images by utilizing a state space model Mamba with the ability to process long sequences and model spatial continuity.
